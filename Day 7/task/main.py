@@ -12,8 +12,8 @@ chosen_word = random.choice(word_list)
 word_length = len(chosen_word)
 blank_word = ""
 blank_array =[]
-display = ""
-
+used_letters = []
+print(chosen_word)
 for i in range(1,word_length+1):
     blank_word += "_"
     blank_array.append("-")
@@ -26,30 +26,25 @@ lives = 7
 while lives > 0:
     print(f"Number of lives remaining {lives}\n")
     print(f"your word is {blank_array}")
-    print(display)
     user_choice = input("\n Please guess a letter..")
     user_choice = user_choice.lower()
-
-    letter_index = len(chosen_word)
-
-    for letter in chosen_word:
-        if letter == user_choice:
-            display+= letter
-        else:
-            display += "_"
-
-    if user_choice in word_in_array:
-        print(f"the letter '{user_choice}' is in the word\n")
-        for i in range(letter_index):
-            if user_choice == word_in_array[i]:
-                blank_array[i] = user_choice
-    if blank_array == word_in_array:
-        break
-    if user_choice not in word_in_array:
-        print(f"sorry you guessed a wrong letter '{user_choice}'\n")
-        lives -= 1
-        print(hangman_art.stages[stages])
-        stages -= 1
+    if user_choice in used_letters:
+        print(f"You have already chosen that character '{user_choice}'")
+    else:
+        letter_index = len(chosen_word)
+        if user_choice in word_in_array:
+            print(f"the letter '{user_choice}' is in the word\n")
+            for i in range(letter_index):
+                if user_choice == word_in_array[i]:
+                    blank_array[i] = user_choice
+        used_letters.append(user_choice)
+        if blank_array == word_in_array:
+            break
+        if user_choice not in word_in_array:
+            print(f"sorry you guessed a wrong letter '{user_choice}'\n")
+            lives -= 1
+            print(hangman_art.stages[stages])
+            stages -= 1
 
 print("game over")
 

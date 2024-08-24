@@ -1,9 +1,7 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
 direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
-
 
 # TODO-1: Create a function called 'encrypt()' that takes 'original_text' and 'shift_amount' as 2 inputs.
 
@@ -15,3 +13,24 @@ shift = int(input("Type the shift number:\n"))
 # TODO-3: Call the 'encrypt()' function and pass in the user inputs. You should be able to test the code and encrypt a
 #  message.
 
+def encode(original_text,shift_amount):
+    original_text = text
+    shift_amount = shift
+    new_text = " "
+    if direction == 'encode':
+        for letter in text:
+            new_text += alphabet[((alphabet.index(letter))+shift)%(len(alphabet))]
+
+        print(f"your encoded message is '{new_text}'")
+
+def decode(original_text,shift_amount):
+    original_text = text
+    shift_amount = shift
+    new_text = " "
+    if direction == 'decode':
+        for letter in text:
+            new_text += alphabet[((alphabet.index(letter))-shift)%(len(alphabet))]
+        print(f"your encoded message is '{new_text}'")
+
+encode(original_text=text,shift_amount=shift)
+decode(original_text=text,shift_amount=shift)
