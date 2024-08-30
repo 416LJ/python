@@ -8,3 +8,14 @@ def increase_enemies():
 
 increase_enemies()
 print(f"enemies outside function: {enemies}")
+
+def game():
+    def drink_potion():
+        potion_strength = 2
+        print(potion_strength)
+    drink_potion()
+
+game()
+
+
+player_health = 10
