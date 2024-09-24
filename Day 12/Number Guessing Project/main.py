@@ -44,7 +44,11 @@ def game():
     guess = 0
     while guess != random_number:
         print(f"you have {turns} left.")
-        guess = int(input("guess a number: "))
+        try:
+            guess = int(input("guess a number: "))
+        except ValueError:
+            print("invalid entry, enter a number")
+            guess = int(input("guess a number: "))
         print(f"you guessed {guess}")
         turns = check_answer(guess,random_number,turns)
         if turns == 0:
